@@ -6,6 +6,9 @@ import './globals.css'
 export const metadata = {
   title: 'Flexibble',
   description: 'Showcase and discover remarkable developer projects',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
