@@ -81,20 +81,16 @@ export const createNewProject =async (form: ProjectForm, creatorId: string, toke
     }
 }
 
-export const fetchAllProjects = async (category?: string | null, endcursor?: string | null) =>{
-    client.setHeader('x-api-key',apiKey)
-    
+export const fetchAllProjects = (category?: string | null, endcursor?: string | null) => {
+  client.setHeader("x-api-key", apiKey);
     if(category){
-        return makeGraphQLRequest(projectsQueryWithFilter,{
-            category,
-            endcursor
-        })
+        return makeGraphQLRequest(projectsQuery, { category, endcursor });
     }
-
-    return makeGraphQLRequest(projectsQueryAll,{
+     return makeGraphQLRequest(projectsQueryAll,{
         category,
     })
-}
+};
+
 
 export const deleteProject = (id: string, token: string) => {
     client.setHeader("Authorization", `Bearer ${token}`);
