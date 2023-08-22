@@ -55,7 +55,7 @@ export const uploadImage = async (imagePath: string) => {
         })
         return response.json()
     } catch (error) {
-        throw error
+        console.log(error)
     }
 }
 
