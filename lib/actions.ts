@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { ProjectForm } from "@/common.types";
 import { createProjectMutation, createUserMutation, deleteProjectMutation, getProjectByIdQuery, getProjectsOfUserQuery, getUserQuery, projectsQuery, projectsQueryAll, projectsQueryWithFilter, updateProjectMutation } from "@/graphql";
 import { GraphQLClient } from "graphql-request";
+import { categoryFilters } from '@/constants';
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -82,12 +83,9 @@ export const createNewProject =async (form: ProjectForm, creatorId: string, toke
 
 export const fetchAllProjects = (category?: string | null, endcursor?: string | null) => {
   client.setHeader("x-api-key", apiKey);
-    if(category){
-        return makeGraphQLRequest(projectsQuery, { category, endcursor });
-    }
-     return makeGraphQLRequest(projectsQueryAll,{
-        category,
-    })
+    const categories = category == null ? categoryFilters : [category];
+
+    return makeGraphQLRequest(projectsQuery, { categories, endcursor });
 };
 
 
