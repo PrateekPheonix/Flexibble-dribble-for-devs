@@ -54,7 +54,6 @@ export const uploadImage = async (imagePath: string) => {
             method: "POST",
             body: JSON.stringify({path: imagePath})
         })
-        console.log(response.json())
         return response.json()
     } catch (error) {
         console.log(error)
@@ -63,7 +62,6 @@ export const uploadImage = async (imagePath: string) => {
 
 export const createNewProject =async (form: ProjectForm, creatorId: string, token: string) =>{
     const imageUrl = await uploadImage(form.image);
-    console.log(imageUrl)
     if(imageUrl.url){
 
         client.setHeader("Authorization", `Bearer ${token}`)
