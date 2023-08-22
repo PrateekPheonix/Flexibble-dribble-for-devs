@@ -54,6 +54,7 @@ export const uploadImage = async (imagePath: string) => {
             method: "POST",
             body: JSON.stringify({path: imagePath})
         })
+        console.log(response.json())
         return response.json()
     } catch (error) {
         console.log(error)
